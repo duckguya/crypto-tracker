@@ -58,5 +58,5 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26"
   },
-  "homepage": "https://duckguya.github.io/react-masterclass"
+  "homepage": "https://duckguya.github.io/crypto-tracker"
 }

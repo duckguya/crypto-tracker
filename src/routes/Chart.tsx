@@ -4,7 +4,7 @@ import { fetchCoinHistroy } from "../api";
 import ApexCharts from "react-apexcharts";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./atoms";
+import { isDarkAtom } from "../atoms";
 // import { CoinId } from "../interface";
 
 interface IChartProps {

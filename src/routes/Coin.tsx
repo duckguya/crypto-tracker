@@ -27,8 +27,8 @@ function Coin({}: ICoinProps) {
   const { coinId } = useParams();
   const location = useLocation();
   const { state } = useLocation() as ILocation;
-  const priceMatch = useMatch("/react-masterclass/:coinId/price");
-  const chartMatch = useMatch("/react-masterclass/:coinId/chart");
+  const priceMatch = useMatch("/:coinId/price");
+  const chartMatch = useMatch("/:coinId/chart");
   const { isLoading: infoLoading, data: infoData } = useQuery<IInfoData>(
     ["info", coinId],
     () => fetchCoinInfo(coinId),
@@ -49,7 +49,7 @@ function Coin({}: ICoinProps) {
           </title>
         </Helmet>
         <Header>
-          <Link to={"/react-masterclass"}>
+          <Link to={"/"}>
             <Arrow>&larr;</Arrow>
           </Link>
           <Title>
@@ -93,10 +93,10 @@ function Coin({}: ICoinProps) {
             {/* nested routes */}
             <Taps>
               <Tap isActive={chartMatch !== null}>
-                <Link to={`/react-masterclass/${coinId}/chart`}>chart</Link>
+                <Link to={`/${coinId}/chart`}>chart</Link>
               </Tap>
               <Tap isActive={priceMatch !== null}>
-                <Link to={`/react-masterclass/${coinId}/price`}>price</Link>
+                <Link to={`/${coinId}/price`}>price</Link>
               </Tap>
             </Taps>
             <Outlet context={{ coinId: coinId }} />

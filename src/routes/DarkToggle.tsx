@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { isDarkAtom } from "./atoms";
+import { isDarkAtom } from "../atoms";
 import { FaSun, FaMoon } from "react-icons/fa";
 // active 효과말고 유지가 되야하는데 그 기능이 안됨
 // const DarkBtn = styled.label`

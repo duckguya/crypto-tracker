@@ -1,10 +1,53 @@
 import axios from "axios";
+import { CategoryState } from "./atoms";
+import { ICoin } from "./interface";
 
 const BASE_URL = `https://api.coinpaprika.com/v1`;
 
-export async function fetchCoins() {
+export async function FetchCoins(category: string) {
   const response = await axios.get(`${BASE_URL}/coins`);
-  return response.data;
+
+  if (category === "rank") {
+    return [
+      // ...response.data.slice(0, 100),
+      {
+        token: response.data
+          .slice(0, 100)
+          .filter((data: any) => data.type === "token")
+          .sort(),
+        coin: response.data
+          .slice(0, 100)
+          .filter((data: any) => data.type === "coin")
+          .sort(),
+      },
+    ];
+  } else if (category === "asc") {
+    return [
+      {
+        token: response.data
+          .slice(0, 100)
+          .filter((data: any) => data.type === "token")
+          .sort((a: ICoin, b: ICoin) => a.name.localeCompare(b.name)),
+        coin: response.data
+          .slice(0, 100)
+          .filter((data: any) => data.type === "coin")
+          .sort((a: ICoin, b: ICoin) => a.name.localeCompare(b.name)),
+      },
+    ];
+  } else {
+    return [
+      {
+        token: response.data
+          .slice(0, 100)
+          .filter((data: any) => data.type === "token")
+          .sort((a: ICoin, b: ICoin) => -a.name.localeCompare(b.name)),
+        coin: response.data
+          .slice(0, 100)
+          .filter((data: any) => data.type === "coin")
+          .sort((a: ICoin, b: ICoin) => -a.name.localeCompare(b.name)),
+      },
+    ];
+  }
 }
 
 export async function fetchCoinInfo(coinId: string | undefined) {

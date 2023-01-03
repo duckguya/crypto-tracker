@@ -11,6 +11,10 @@ export interface ICoin {
   is_active: boolean;
   type: string;
 }
+export interface ICoinList {
+  coin: ICoin[];
+  token: ICoin[];
+}
 
 export interface IInfoData {
   id: string;

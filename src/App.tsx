@@ -1,12 +1,13 @@
 /* eslint-disable */
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./routes/Router";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { HelmetProvider } from "react-helmet-async";
 import { darkTheme, lightTheme } from "./theme";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./routes/atoms";
+import { isDarkAtom } from "./atoms";
+import Header from "./Components/Header";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -68,7 +69,6 @@ a{
   color:inherit;
 }
 `;
-
 function App() {
   const isDark = useRecoilValue(isDarkAtom);
   return (
@@ -76,6 +76,7 @@ function App() {
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
         <HelmetProvider>
+          <Header />
           <Router />
         </HelmetProvider>
         {/* ReactQueryDevtools : useQuery에 캐싱된 데이터를 볼 수 있다. */}

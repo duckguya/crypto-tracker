@@ -6,7 +6,7 @@ import { IPriceData } from "../interface";
 import ApexCharts from "react-apexcharts";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./atoms";
+import { isDarkAtom } from "../atoms";
 
 const xLabel = ["1y", "30d", "7d", "24h", "12h", "6h", "1h", "30m", "15m"];
 
