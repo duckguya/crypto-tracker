@@ -3,14 +3,15 @@ import { CategoryState } from "./atoms";
 import { ICoin } from "./interface";
 
 const BASE_URL = `https://api.coinpaprika.com/v1`;
+// const BASE_URL = `/api`;
 
 export async function FetchCoins(category: string) {
   const response = await axios.get(`${BASE_URL}/coins`);
 
   if (category === "rank") {
     return [
-      // ...response.data.slice(0, 100),
       {
+        totalData: response.data.slice(0, 5),
         token: response.data
           .slice(0, 100)
           .filter((data: any) => data.type === "token")

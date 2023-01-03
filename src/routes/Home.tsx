@@ -18,7 +18,6 @@ function Home({}: ICoinsProps) {
   const { isLoading, data, isError, refetch } = useQuery<ICoinList[]>(
     ["allCoins"],
     () => FetchCoins(category)
-    // { enabled: !!category }
   );
   // 첫 랜더 시 로딩이 보이고 그 이후부턴 로딩이 안보이는 이유(detail페이지 갔다와도) : react query가 데이터를 캐시에 저장해둔다.
 
@@ -41,18 +40,21 @@ function Home({}: ICoinsProps) {
       <Helmet>
         <title>Coin</title>
       </Helmet>
-      <DarkToggle />
-      {state === "error" && "error!"}
+      {/* <DarkToggle /> */}
+      {state === "error" && <Loader>"error!"</Loader>}
       {state === "loading" && <Loader> Loading...</Loader>}
       {state === "ok" && data && (
         <>
-          <CoinWrapper>
-            <div>{category}</div>
+          <BodyWrapper>
+            <div />
             <Select onChange={onChanged} onClick={() => refetch}>
               <option value="rank">랭크순</option>
               <option value="asc">오름차순</option>
               <option value="desc">내림차순</option>
             </Select>
+          </BodyWrapper>
+
+          <CoinWrapper>
             <Card>
               <Coins data={data[0].coin} type={"coin"} />
             </Card>
@@ -68,6 +70,7 @@ function Home({}: ICoinsProps) {
 
 const Container = styled.div`
   padding: 100px 20px 0 20px;
+  width: 100vw;
 `;
 
 const Header = styled.header`
@@ -77,13 +80,22 @@ const Header = styled.header`
   align-items: center;
   margin-bottom: 60px;
 `;
+const BodyWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+`;
 
-const CoinWrapper = styled.li`
+const CoinWrapper = styled.div`
   display: flex;
   justify-content: space-around;
+  width: 100vw;
 `;
 const Select = styled.select`
-  height: 20px;
+  border: 1px solid #333740;
+  border-radius: 5px;
+  padding: 3px 10px;
+  color: #333740;
 `;
 const Card = styled.div`
   width: 40%;

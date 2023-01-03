@@ -12,6 +12,7 @@ export interface ICoin {
   type: string;
 }
 export interface ICoinList {
+  totalData?: ICoin[];
   coin: ICoin[];
   token: ICoin[];
 }
