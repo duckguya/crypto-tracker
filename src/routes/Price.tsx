@@ -8,51 +8,6 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "./atoms";
 
-const Container = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 20px;
-  border: 1px solid #46505e;
-  border-radius: 20px;
-  margin-bottom: 40px;
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-  }
-`;
-const TitleWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  @media screen and (max-width: 500px) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-`;
-const Title = styled.p`
-  font-weight: 600;
-  padding-bottom: 5px;
-  font-size: 1rem;
-`;
-
-const Content = styled.span`
-  color: ${(props) => props.theme.textColor};
-  font-size: 12px;
-  text-align: center;
-`;
-
-const Plus = styled.span`
-  color: #7bed9f;
-`;
-const Minus = styled.span`
-  color: #ff4646;
-`;
-
-const Vertical = styled.div`
-  width: 400px;
-  height: 1px;
-  background-color: rgb(170, 170, 170);
-`;
-
 const xLabel = ["1y", "30d", "7d", "24h", "12h", "6h", "1h", "30m", "15m"];
 
 function Price() {
@@ -196,4 +151,48 @@ function Price() {
   );
 }
 
+const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 20px;
+  border: 1px solid #46505e;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
+`;
+const TitleWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 500px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+const Title = styled.p`
+  font-weight: 600;
+  padding-bottom: 5px;
+  font-size: 1rem;
+`;
+
+const Content = styled.span`
+  color: ${(props) => props.theme.textColor};
+  font-size: 12px;
+  text-align: center;
+`;
+
+const Plus = styled.span`
+  color: #7bed9f;
+`;
+const Minus = styled.span`
+  color: #ff4646;
+`;
+
+const Vertical = styled.div`
+  width: 400px;
+  height: 1px;
+  background-color: rgb(170, 170, 170);
+`;
 export default Price;

@@ -19,16 +19,19 @@ interface IHistorical {
   close: number;
   volume: number;
   market_cap: number;
+  error?: string;
 }
 function Chart() {
   const { coinId } = useOutletContext<IChartProps>();
-  const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () =>
-    fetchCoinHistroy(coinId)
+  const { isLoading, data, isError } = useQuery<IHistorical[]>(
+    ["ohlcv", coinId],
+    () => fetchCoinHistroy(coinId)
   );
   const isDark = useRecoilValue(isDarkAtom);
 
   return (
     <div>
+      {isError && "해당 암호화폐는 차트가 지원되지 않습니다."}
       {isLoading ? (
         "Loading chart..."
       ) : (
