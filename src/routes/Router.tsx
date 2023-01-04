@@ -9,7 +9,7 @@ interface IRouterProps {}
 
 function Router({}: IRouterProps) {
   return (
-    <HashRouter>
+    <BrowserRouter basename="/crypto-tracker">
       <Routes>
         <Route path="/crypto-tracker" element={<Home />}></Route>
         <Route path="/crypto-tracker" element={<Home />}></Route>
@@ -19,7 +19,7 @@ function Router({}: IRouterProps) {
           <Route path="chart" element={<Chart />}></Route>
         </Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
