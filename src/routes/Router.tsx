@@ -9,8 +9,8 @@ interface IRouterProps {}
 
 function Router({}: IRouterProps) {
   return (
-    // <BrowserRouter basename="/crypto-tracker">
-    <HashRouter>
+    <BrowserRouter basename="/crypto-tracker">
+      {/* <HashRouter basename={process.env.PUBLIC_URL}> */}
       <Routes>
         <Route
           path={`${process.env.PUBLIC_URL}/crypto-tracker`}
@@ -33,8 +33,8 @@ function Router({}: IRouterProps) {
           <Route path={`chart`} element={<Chart />}></Route>
         </Route>
       </Routes>
-    </HashRouter>
-    // </BrowserRouter>
+      {/* </HashRouter> */}
+    </BrowserRouter>
   );
 }
 
