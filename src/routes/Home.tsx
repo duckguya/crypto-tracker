@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { FetchCoins } from "../api";
 import { ICoinList, ICoin } from "../interface";
 import Coins from "../Components/Coins";
-import DarkToggle from "./DarkToggle";
+import DarkToggle from "../Components/DarkToggle";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { CategoryState } from "../atoms";
 import { useEffect } from "react";
@@ -38,9 +38,8 @@ function Home({}: ICoinsProps) {
   return (
     <Container>
       <Helmet>
-        <title>Coin</title>
+        <title>Home</title>
       </Helmet>
-      {/* <DarkToggle /> */}
       {state === "error" && <Loader>"error!"</Loader>}
       {state === "loading" && <Loader> Loading...</Loader>}
       {state === "ok" && data && (

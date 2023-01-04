@@ -11,9 +11,10 @@ import {
 } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { fetchCoinInfo, fetchCoinTickers } from "../api";
-import { IInfoData, IPriceData } from "../interface";
-import DarkToggle from "./DarkToggle";
+import { fetchCoinInfo, FetchCoins, fetchCoinTickers } from "../api";
+import { ICoinList, IInfoData, IPriceData } from "../interface";
+import DarkToggle from "../Components/DarkToggle";
+import Coins from "../Components/Coins";
 
 // interface
 interface ILocation {
@@ -25,10 +26,14 @@ interface ICoinProps {}
 
 function Coin({}: ICoinProps) {
   const { coinId } = useParams();
-  const location = useLocation();
   const { state } = useLocation() as ILocation;
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
+
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const type = params.get("type");
+
   const { isLoading: infoLoading, data: infoData } = useQuery<IInfoData>(
     ["info", coinId],
     () => fetchCoinInfo(coinId),
@@ -38,18 +43,22 @@ function Coin({}: ICoinProps) {
     ["tickers", coinId],
     () => fetchCoinTickers(coinId)
   );
+  const { isLoading, data, isError, refetch } = useQuery<ICoinList[]>(
+    ["allCoins"],
+    () => FetchCoins("rank")
+  );
 
   const loading = infoLoading || tickersLoading;
   return (
-    <>
-      <Container>
+    <Container>
+      <DetailWrapper>
         <Helmet>
           <title>
             {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
           </title>
         </Helmet>
         <Header>
-          <Link to={"/"}>
+          <Link to={"/crypto-tracker"}>
             <Arrow>&larr;</Arrow>
           </Link>
           <Title>
@@ -57,7 +66,6 @@ function Coin({}: ICoinProps) {
           아니라면 로딩을 보여준다 근데 로딩이 false라면 info.name을 보여준다 (api호출해서 온 데이터) */}
             {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
           </Title>
-          <DarkToggle />
         </Header>
 
         {loading ? (
@@ -93,24 +101,50 @@ function Coin({}: ICoinProps) {
             {/* nested routes */}
             <Taps>
               <Tap isActive={chartMatch !== null}>
-                <Link to={`/${coinId}/chart`}>chart</Link>
+                <Link to={`/crypto-tracker/${coinId}/chart?type=${type}`}>
+                  chart
+                </Link>
               </Tap>
               <Tap isActive={priceMatch !== null}>
-                <Link to={`/${coinId}/price`}>price</Link>
+                <Link to={`/crypto-tracker/${coinId}/price?type=${type}`}>
+                  price
+                </Link>
               </Tap>
             </Taps>
             <Outlet context={{ coinId: coinId }} />
           </>
         )}
-      </Container>
-    </>
+      </DetailWrapper>
+      <CoinListWrapper>
+        {data && type === "coin" && <Coins data={data[0].coin} type={type} />}
+        {data && type === "token" && <Coins data={data[0].token} type={type} />}
+      </CoinListWrapper>
+    </Container>
   );
 }
 
 const Container = styled.div`
-  padding: 100px 20px 0 20px;
-  max-width: 480px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  width: 100vw;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const DetailWrapper = styled.div`
+  margin: 60px 0 60px 0;
+  padding: 100px 40px 0 40px;
+  width: 50%;
+  max-height: 1000px;
+  border-radius: 10px;
+  background-color: ${(props) => props.theme.cardBgColor};
+  box-shadow: ${(props) => props.theme.shadowColor};
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 40px;
+  }
 `;
 
 const Header = styled.header`
@@ -122,11 +156,7 @@ const Header = styled.header`
 
 const Title = styled.h1`
   font-size: 3rem;
-  color: ${(props) => props.theme.accentColor};
-  /* -webkit-text-stroke-width: 1.5px; */
-  /* -webkit-text-stroke-color: ${(props) => props.theme.accentColor}; ; */
-  @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,700;1,700&family=Source+Sans+Pro:wght@300;400&family=Ubuntu:wght@700&display=swap");
-  font-family: "Ubuntu", sans-serif;
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Loader = styled.span`
@@ -197,5 +227,9 @@ const Arrow = styled.div`
   &:active {
     color: ${(props) => props.theme.cardBgColor};
   }
+`;
+
+const CoinListWrapper = styled.div`
+  margin-top: 60px;
 `;
 export default Coin;

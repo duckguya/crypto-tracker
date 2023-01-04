@@ -11,9 +11,9 @@ function Router({}: IRouterProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/:coinId" element={<Coin />}>
+        <Route path="/crypto-tracker" element={<Home />}></Route>
+        <Route path="/crypto-tracker" element={<Home />}></Route>
+        <Route path="/crypto-tracker/:coinId" element={<Coin />}>
           {/* nested routes */}
           <Route path="price" element={<Price />}></Route>
           <Route path="chart" element={<Chart />}></Route>

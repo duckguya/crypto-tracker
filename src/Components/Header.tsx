@@ -1,20 +1,35 @@
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { FetchCoins, fetchCoinTickers } from "../api";
 import { ICoinList, IPriceData } from "../interface";
 
 function Header() {
-  const { isLoading, data, isError, refetch } = useQuery<ICoinList[]>(
-    ["allCoins"],
-    () => FetchCoins("rank")
+  const { isLoading, data, isError } = useQuery<ICoinList[]>(["allCoins"], () =>
+    FetchCoins("rank")
   );
-  let coinId = data && data[0].totalData && data[0].totalData[0].id;
+  let index = 0;
+  let coinId = data && data[0].totalData && data[0].totalData[index].id;
 
-  const { isLoading: tickersLoading, data: tickersData } = useQuery<IPriceData>(
-    ["tickers", coinId],
-    () => fetchCoinTickers(coinId)
-  );
-  console.log(tickersData);
+  const {
+    isLoading: tickersLoading,
+    data: tickersData,
+    refetch,
+  } = useQuery<IPriceData>(["tickers", coinId], () => fetchCoinTickers(coinId));
+
+  // setTimeout(() => {
+  //   if (index === 4) {
+  //     index = 0;
+  //   } else {
+  //     index++;
+  //   }
+  //   refetch();
+  // }, 5000);
+
+  useEffect(() => {
+    // console.log("refetch!!!");
+  }, [refetch, index]);
+
   return (
     <Nav>
       <div>{tickersData?.symbol}</div>

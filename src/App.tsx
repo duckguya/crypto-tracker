@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "./atoms";
 import Header from "./Components/Header";
+import DarkToggle from "./Components/DarkToggle";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -60,7 +61,7 @@ border-spacing: 0;
 }
 body{
   /* google font  */
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Merriweather", serif;
   background-color: ${(props) => props.theme.bgColor};
   color: ${(props) => props.theme.textColor};
 }
@@ -77,10 +78,11 @@ function App() {
         <GlobalStyle />
         <HelmetProvider>
           <Header />
+          <DarkToggle />
           <Router />
         </HelmetProvider>
         {/* ReactQueryDevtools : useQuery에 캐싱된 데이터를 볼 수 있다. */}
-        <ReactQueryDevtools initialIsOpen={true} />
+        {/* <ReactQueryDevtools initialIsOpen={true} /> */}
       </ThemeProvider>
     </>
   );

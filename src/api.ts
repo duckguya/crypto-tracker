@@ -2,7 +2,8 @@ import axios from "axios";
 import { CategoryState } from "./atoms";
 import { ICoin } from "./interface";
 
-const BASE_URL = `https://api.coinpaprika.com/v1`;
+// const BASE_URL = `https://api.coinpaprika.com/v1`;
+const BASE_URL = ``;
 // const BASE_URL = `/api`;
 
 export async function FetchCoins(category: string) {
@@ -25,6 +26,7 @@ export async function FetchCoins(category: string) {
   } else if (category === "asc") {
     return [
       {
+        totalData: response.data.slice(0, 5),
         token: response.data
           .slice(0, 100)
           .filter((data: any) => data.type === "token")
@@ -38,6 +40,7 @@ export async function FetchCoins(category: string) {
   } else {
     return [
       {
+        totalData: response.data.slice(0, 5),
         token: response.data
           .slice(0, 100)
           .filter((data: any) => data.type === "token")
@@ -68,5 +71,6 @@ export async function fetchCoinHistroy(coinId: string) {
     `https://ohlcv-api.nomadcoders.workers.dev?coinId=${coinId}`
   );
   // `https://ohlcv-api.nomadcoders.workers.dev/coinId=${coinId}?start=${startDate}&end=${endDate}`
-  return response.data.filter((data: any) => Array.isArray(data));
+
+  return response.data;
 }

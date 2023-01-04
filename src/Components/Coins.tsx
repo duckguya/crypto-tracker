@@ -1,6 +1,6 @@
 // https://api.coinpaprika.com/#tag/Tags/paths/~1tags/get
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { CategoryState } from "../atoms";
@@ -15,15 +15,21 @@ function Coins({ data, type }: IProps) {
   // 첫 랜더 시 로딩이 보이고 그 이후부턴 로딩이 안보이는 이유(detail페이지 갔다와도) : react query가 데이터를 캐시에 저장해둔다.
 
   // console.log(category);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const listType = params.get("type");
 
   return (
     <>
-      <Title>{type}</Title>
+      {!listType && <Title>{type.toUpperCase()}</Title>}
       {data &&
         data.map((coin, index) => (
           <CoinWrapper key={coin.id}>
-            <Link to={`/${coin.id}`} state={{ name: coin.name }}>
-              <Rank>{index + 1}</Rank>
+            <Link
+              to={`/crypto-tracker/${coin.id}?type=${type}`}
+              state={{ name: coin.name }}
+            >
+              <Rank>{coin.rank}</Rank>
               <Img
                 src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}
               />
@@ -74,10 +80,10 @@ const CoinNameWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 3rem;
-  color: ${(props) => props.theme.accentColor};
-  @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,700;1,700&family=Source+Sans+Pro:wght@300;400&family=Ubuntu:wght@700&display=swap");
-  font-family: "Ubuntu", sans-serif;
+  font-size: 40px;
+  color: ${(props) => props.theme.textColor};
+
+  padding-bottom: 20px;
 `;
 
 const Loader = styled.span`
