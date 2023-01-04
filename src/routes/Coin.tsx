@@ -135,7 +135,7 @@ const Container = styled.div`
 
 const DetailWrapper = styled.div`
   margin: 60px 0 60px 0;
-  padding: 100px 40px 0 40px;
+  padding: 30px 40px 0 40px;
   width: 50%;
   max-height: 1000px;
   border-radius: 10px;
