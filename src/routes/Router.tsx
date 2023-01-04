@@ -9,7 +9,7 @@ interface IRouterProps {}
 
 function Router({}: IRouterProps) {
   return (
-    <BrowserRouter basename="/crypto-tracker">
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       {/* <HashRouter basename={process.env.PUBLIC_URL}> */}
       <Routes>
         <Route
