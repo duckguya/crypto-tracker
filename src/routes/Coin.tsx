@@ -99,7 +99,7 @@ function Coin({}: ICoinProps) {
             </OverView>
 
             {/* nested routes */}
-            <Taps>
+            <TapWrapper>
               <Tap isActive={chartMatch !== null}>
                 <Link to={`/crypto-tracker/${coinId}/chart?type=${type}`}>
                   chart
@@ -110,7 +110,7 @@ function Coin({}: ICoinProps) {
                   price
                 </Link>
               </Tap>
-            </Taps>
+            </TapWrapper>
             <Outlet context={{ coinId: coinId }} />
           </>
         )}
@@ -164,7 +164,7 @@ const Loader = styled.span`
   display: block;
 `;
 
-const Taps = styled.div`
+const TapWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 25px 0;
