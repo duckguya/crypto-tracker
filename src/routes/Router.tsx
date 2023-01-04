@@ -12,12 +12,25 @@ function Router({}: IRouterProps) {
     // <BrowserRouter basename="/crypto-tracker">
     <HashRouter>
       <Routes>
-        <Route path="/crypto-tracker" element={<Home />}></Route>
-        <Route path="/crypto-tracker" element={<Home />}></Route>
-        <Route path="/crypto-tracker/:coinId" element={<Coin />}>
+        <Route
+          path={`${process.env.PUBLIC_URL}/crypto-tracker`}
+          element={<Home />}
+        ></Route>
+        <Route
+          path={`${process.env.PUBLIC_URL}/crypto-tracker`}
+          element={<Home />}
+        ></Route>
+        <Route
+          path={`${process.env.PUBLIC_URL}/crypto-tracker`}
+          element={<Home />}
+        ></Route>
+        <Route
+          path={`${process.env.PUBLIC_URL}/crypto-tracker/:coinId`}
+          element={<Coin />}
+        >
           {/* nested routes */}
-          <Route path="price" element={<Price />}></Route>
-          <Route path="chart" element={<Chart />}></Route>
+          <Route path={`price`} element={<Price />}></Route>
+          <Route path={`chart`} element={<Chart />}></Route>
         </Route>
       </Routes>
     </HashRouter>
