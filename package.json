@@ -60,5 +60,5 @@
     "@types/styled-components": "^5.1.26"
   },
   "proxy": "https://api.coinpaprika.com/v1",
-  "homepage": "https://duckguya.github.io/crypto-tracker/"
+  "homepage": "https://duckguya.github.io/crypto-tracker"
 }
