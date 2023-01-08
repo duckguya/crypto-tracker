@@ -25,10 +25,7 @@ function Coins({ data, type }: IProps) {
       {data &&
         data.map((coin, index) => (
           <CoinWrapper key={coin.id}>
-            <Link
-              to={`/crypto-tracker/${coin.id}?type=${type}`}
-              state={{ name: coin.name }}
-            >
+            <Link to={`/${coin.id}?type=${type}`} state={{ name: coin.name }}>
               <Rank>{coin.rank}</Rank>
               <Img
                 src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useLocation, useOutletContext } from "react-router-dom";
-import { fetchCoinHistroy, FetchCoins } from "../api";
+import { fetchCoinHistory, FetchCoins } from "../api";
 import ApexCharts from "react-apexcharts";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import { useRecoilValue } from "recoil";
@@ -32,7 +32,7 @@ function Chart() {
 
   const { isLoading, data, isError } = useQuery<IHistorical[]>(
     ["ohlcv", coinId],
-    () => fetchCoinHistroy(coinId)
+    () => fetchCoinHistory(coinId)
   );
 
   return (

@@ -58,7 +58,7 @@ function Coin({}: ICoinProps) {
           </title>
         </Helmet>
         <Header>
-          <Link to={"/crypto-tracker"}>
+          <Link to={"/"}>
             <Arrow>&larr;</Arrow>
           </Link>
           <Title>
@@ -101,14 +101,10 @@ function Coin({}: ICoinProps) {
             {/* nested routes */}
             <TapWrapper>
               <Tap isActive={chartMatch !== null}>
-                <Link to={`/crypto-tracker/${coinId}/chart?type=${type}`}>
-                  chart
-                </Link>
+                <Link to={`/${coinId}/chart?type=${type}`}>chart</Link>
               </Tap>
               <Tap isActive={priceMatch !== null}>
-                <Link to={`/crypto-tracker/${coinId}/price?type=${type}`}>
-                  price
-                </Link>
+                <Link to={`/${coinId}/price?type=${type}`}>price</Link>
               </Tap>
             </TapWrapper>
             <Outlet context={{ coinId: coinId }} />

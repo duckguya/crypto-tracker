@@ -9,32 +9,16 @@ interface IRouterProps {}
 
 function Router({}: IRouterProps) {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      {/* <HashRouter basename={process.env.PUBLIC_URL}> */}
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route
-          path={`${process.env.PUBLIC_URL}/crypto-tracker`}
-          element={<Home />}
-        ></Route>
-        <Route
-          path={`${process.env.PUBLIC_URL}/crypto-tracker`}
-          element={<Home />}
-        ></Route>
-        <Route
-          path={`${process.env.PUBLIC_URL}/crypto-tracker`}
-          element={<Home />}
-        ></Route>
-        <Route
-          path={`${process.env.PUBLIC_URL}/crypto-tracker/:coinId`}
-          element={<Coin />}
-        >
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/:coinId" element={<Coin />}>
           {/* nested routes */}
-          <Route path={`price`} element={<Price />}></Route>
-          <Route path={`chart`} element={<Chart />}></Route>
+          <Route path="price" element={<Price />}></Route>
+          <Route path="chart" element={<Chart />}></Route>
         </Route>
       </Routes>
-      {/* </HashRouter> */}
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

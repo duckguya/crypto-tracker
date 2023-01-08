@@ -2,13 +2,12 @@ import axios from "axios";
 import { CategoryState } from "./atoms";
 import { ICoin } from "./interface";
 
-// const BASE_URL = `https://api.coinpaprika.com/v1`;
-const BASE_URL = ``;
+const BASE_URL = `https://api.coinpaprika.com/v1`;
+// const BASE_URL = ``;
 // const BASE_URL = `/api`;
 
 export async function FetchCoins(category: string) {
   const response = await axios.get(`${BASE_URL}/coins`);
-
   if (category === "rank") {
     return [
       {
@@ -64,13 +63,12 @@ export async function fetchCoinTickers(coinId: string | undefined) {
   return response.data;
 }
 
-export async function fetchCoinHistroy(coinId: string) {
+export async function fetchCoinHistory(coinId: string) {
   const endDate = Math.floor(Date.now() / 1000); // 현재
   const startDate = endDate - 60 * 60 * 24 * 7; // 일주일 전
   const response = await axios.get(
     `https://ohlcv-api.nomadcoders.workers.dev?coinId=${coinId}`
   );
   // `https://ohlcv-api.nomadcoders.workers.dev/coinId=${coinId}?start=${startDate}&end=${endDate}`
-
   return response.data;
 }
