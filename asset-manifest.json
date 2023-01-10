@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "https://duckguya.github.io/crypto-tracker/static/js/main.5d163a45.js",
+    "main.js": "https://duckguya.github.io/crypto-tracker/static/js/main.a24501bb.js",
     "index.html": "https://duckguya.github.io/crypto-tracker/index.html",
-    "main.5d163a45.js.map": "https://duckguya.github.io/crypto-tracker/static/js/main.5d163a45.js.map"
+    "main.a24501bb.js.map": "https://duckguya.github.io/crypto-tracker/static/js/main.a24501bb.js.map"
   },
   "entrypoints": [
-    "static/js/main.5d163a45.js"
+    "static/js/main.a24501bb.js"
   ]
 }
