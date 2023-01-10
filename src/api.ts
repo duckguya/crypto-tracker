@@ -5,6 +5,7 @@ import { ICoin } from "./interface";
 // const BASE_URL = `https://api.coinpaprika.com/v1`;
 // const BASE_URL = ``;
 const BASE_URL = `/api`;
+axios.defaults.withCredentials = true;
 
 export async function FetchCoins(category: string) {
   const response = await axios.get(`${BASE_URL}/coins`);
