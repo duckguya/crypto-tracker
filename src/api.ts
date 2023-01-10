@@ -2,13 +2,13 @@ import axios from "axios";
 import { CategoryState } from "./atoms";
 import { ICoin } from "./interface";
 
-const BASE_URL = `https://api.coinpaprika.com/v1`;
+// const BASE_URL = `https://api.coinpaprika.com/v1`;
 // const BASE_URL = `/api`;
 // 리소스 접근 허용
 axios.defaults.headers["Access-Control-Allow-Origin"] = "*";
 
 export async function FetchCoins(category: string) {
-  const response = await axios.get(`${BASE_URL}/coins`);
+  const response = await axios.get(`/coins`);
   if (category === "rank") {
     return [
       {
@@ -55,12 +55,12 @@ export async function FetchCoins(category: string) {
 }
 
 export async function fetchCoinInfo(coinId: string | undefined) {
-  const response = await axios.get(`${BASE_URL}/coins/${coinId}`);
+  const response = await axios.get(`/coins/${coinId}`);
   return response.data;
 }
 
 export async function fetchCoinTickers(coinId: string | undefined) {
-  const response = await axios.get(`${BASE_URL}/tickers/${coinId}`);
+  const response = await axios.get(`/tickers/${coinId}`);
   return response.data;
 }
 
