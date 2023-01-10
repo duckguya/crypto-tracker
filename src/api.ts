@@ -4,6 +4,9 @@ import { ICoin } from "./interface";
 
 const BASE_URL = `https://api.coinpaprika.com/v1`;
 // const BASE_URL = `/api`;
+// 리소스 접근 허용
+axios.defaults.headers["Access-Control-Allow-Origin"] = "*";
+// 서로 다른 도메인간 쿠키 전달 허용
 axios.defaults.withCredentials = true;
 
 export async function FetchCoins(category: string) {
