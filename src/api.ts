@@ -2,8 +2,8 @@ import axios from "axios";
 import { CategoryState } from "./atoms";
 import { ICoin } from "./interface";
 
-// const BASE_URL = `https://api.coinpaprika.com/v1`;
-const BASE_URL = `/api`;
+const BASE_URL = `https://api.coinpaprika.com/v1`;
+// const BASE_URL = `/api`;
 axios.defaults.withCredentials = true;
 
 export async function FetchCoins(category: string) {
