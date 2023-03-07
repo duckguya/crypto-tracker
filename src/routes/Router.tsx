@@ -9,7 +9,7 @@ interface IRouterProps {}
 
 function Router({}: IRouterProps) {
   return (
-    <BrowserRouter>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/:coinId" element={<Coin />}>
@@ -18,7 +18,7 @@ function Router({}: IRouterProps) {
           <Route path="chart" element={<Chart />}></Route>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
